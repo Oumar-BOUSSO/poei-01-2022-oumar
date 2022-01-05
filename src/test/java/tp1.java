@@ -30,14 +30,45 @@ public class tp1 {
         //pour la barre de recherche
         barreRecherche.sendKeys(Keys.ENTER);
 
-       // driver.quit();// ce bout de code permet d'arreter le chargement de la page google en boucle
-
+        driver.quit();// ce bout de code permet d'arreter le chargement de la page google en boucle
 
     }
 
 
     @Test
     public void test2() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.amazon.fr");
+        driver.manage().window().maximize();
+        // fermer cookies
+        WebElement buttonCookies = driver.findElement(By.id("sp-cc-accept"));
+        buttonCookies.click();
+        WebElement barreRecherche = driver.findElement(By.id("twotabsearchtextbox"));
+        barreRecherche.sendKeys("machine a raclette");
+        barreRecherche.sendKeys(Keys.ENTER);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //WebElement produit1 = driver.findElement(By.cssSelector("[cel_widget_id='MAIN-SEARCH_RESULTS-5']"));
+       //produit1.click();
+
+        WebElement produit1 = driver.findElement(By.cssSelector("[data-cel-widget='search_result_1']"));
+        produit1.click();
+
+        WebElement ajoutPanier = driver.findElement(By.cssSelector("[data-action='dp-pre-atc-declarative']"));
+        ajoutPanier.click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.quit();
+
 
     }
 }
