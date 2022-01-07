@@ -41,6 +41,7 @@ public class AmazonTest {
 
         ProductPage productPage = new ProductPage(driver);
         productPage.addToCart();
+        productPage.noCoverage();
 
         // Assert
     }
@@ -59,6 +60,7 @@ public class AmazonTest {
 
         ProductPage productPage = new ProductPage(driver);
         productPage.addToCart();
+        productPage.noCoverage();
 
 
 
