@@ -28,6 +28,7 @@ public class tp1 {
         //fermer les cookies
         WebElement buttonCookies = driver.findElement(By.id("sp-cc-accept"));
         buttonCookies.click();
+
     }
     //Code Pour fermer le navigateur: c'est une fonction
     @AfterMethod
@@ -103,7 +104,7 @@ public class tp1 {
         // Assert
         Assert.assertEquals(listeDeResultat.size(), expectedNumberOfResults, "The number of search results is not correct");
     }
-    
+
 }
 
 
