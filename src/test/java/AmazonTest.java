@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -28,9 +29,10 @@ public class AmazonTest {
     }
 
     @Test
-    public void laptotAddToCartPriceTest() {
+    public void hpChromeBookAddToCartPriceTest() {
         // Arrange
-        String productName = "Ordinateur Portable";
+        String productName = "HP Chromebook x360 14a-ca0000sf";
+        String expectedPrice = "360 €";
 
         // Act
         MainPage mainPage = new MainPage(driver);
@@ -47,7 +49,15 @@ public class AmazonTest {
         ConfirmationAddToCartPage confirmationAddToCartPage = new ConfirmationAddToCartPage(driver);
         confirmationAddToCartPage.openCart();
 
+        CartPage cartPage = new CartPage(driver);
+        String productPrice = cartPage.getProductPrice(0);
+        String activeCartSubtotal = cartPage.getActiveCartSubtotal();
+        String buyboxCartSubtotal = cartPage.getBuyboxCartSubtotal();
+
         // Assert
+        Assert.assertEquals(productPrice, expectedPrice);
+        Assert.assertEquals(activeCartSubtotal, expectedPrice);
+        Assert.assertEquals(buyboxCartSubtotal, expectedPrice);
     }
 
     //@Test
