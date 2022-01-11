@@ -75,6 +75,14 @@ public class AmazonTest {
         Assert.assertEquals(buyboxCartSubtotal, expectedPrice);
     }
 
+
+    @Test
+    public void passedTest() {
+        MainPage mainPage = new MainPage(driver);
+
+        Assert.assertTrue(true);
+    }
+
     //@Test
     //public void machineARacletteTest() {
         // Arrange
