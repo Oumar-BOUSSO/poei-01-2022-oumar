@@ -1,12 +1,16 @@
+import amazon.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.sql.Driver;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class AmazonTest {
 
@@ -14,7 +18,18 @@ public class AmazonTest {
 
     @BeforeMethod
     public  void setup(){
-        driver = new ChromeDriver();
+        // AVEC SELENIUM GRIDE
+        URL seleniumGridUrl = null;
+        try {
+            seleniumGridUrl = new URL("http://127.0.0.1:4444");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        ChromeOptions chromeOptions = new ChromeOptions();
+        driver = new RemoteWebDriver(seleniumGridUrl, chromeOptions);
+
+
+        //driver = new ChromeDriver();//=>AVEC SELENIUM WEB DRIVER
         driver.get("https://www.amazon.fr");
         driver.manage().window().maximize();
 
@@ -66,17 +81,17 @@ public class AmazonTest {
         //String productName = "Machine a raclette";
 
         // Act
-        //MainPage mainPage = new MainPage(driver);
+        //amazon.MainPage mainPage = new amazon.MainPage(driver);
         //mainPage.searchProduct(productName);
 
-        //SearchResultPage searchResultPage = new SearchResultPage(driver);
+        //amazon.SearchResultPage searchResultPage = new amazon.SearchResultPage(driver);
         //searchResultPage.openResult( 5);
 
-        //ProductPage productPage = new ProductPage(driver);
+        //amazon.ProductPage productPage = new amazon.ProductPage(driver);
         //productPage.addToCart();
         //productPage.noCoverage();
 
-        //ConfirmationAddToCartPage confirmationAddToCartPage = new ConfirmationAddToCartPage(driver);
+        //amazon.ConfirmationAddToCartPage confirmationAddToCartPage = new amazon.ConfirmationAddToCartPage(driver);
         //confirmationAddToCartPage.openCart();
 
     //}
